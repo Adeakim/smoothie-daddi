@@ -1,0 +1,22 @@
+
+{%extends 'smoothie/main.html'%}{%load static%}
+
+{% block content %}
+<div class="container">
+    <div id="PRICING">
+        {%for product in products%}
+        <div id="border">
+          <figure>
+            <img src="{{product.image.url}}" />
+            <figcaption>{{product.about}}<br />{{product.price}}</figcaption>
+            <a href="{% url 'cart' %}">
+              <button data-action= "add" data-product={{product.id}} class="btn update-cart">ADD TO CART</button></a
+            >
+          </figure>
+        </div>
+        {%endfor%}
+      </div>
+
+</div>
+
+{% endblock content %}

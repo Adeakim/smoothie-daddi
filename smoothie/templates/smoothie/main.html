@@ -1,14 +1,45 @@
-{% load static %}
+
 <!-- <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
  <script src="https://kit.fontawesome.com/fe498f9d96.js" crossorigin="anonymous"></script> -->
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'smoothie/index.css' %}">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+    <script src="https://kit.fontawesome.com/fe498f9d96.js" crossorigin="anonymous"></script>
     <title>smoothie daddy</title>
+
+    <script>
+      var user = "{{request.user}}";
+      function getToken(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          const cookies = document.cookie.split(";");
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(
+                cookie.substring(name.length + 1)
+              );
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+      const csrftoken = getToken("csrftoken");
+    </script>
 </head>
 <body>
     <header id="header">
@@ -16,14 +47,40 @@
        <img  id="header-img" src="https://github.com/Adeakim/daddy/blob/master/SMOOTHIE%20LOGO.jpg?raw=true">
         <div id="filling"></div> 
    </div>
-       <nav id="nav-bar">
+       <!-- <nav id="nav-bar">
            <ul class="flex">
                <li><a href="#FEATURES" class="nav-link">FEATURES</a></li>
                <li><a href="#PRICING"class="nav-link">PRICING</a></li>
-               <li><a href="#ABOUT"class="nav-link">ABOUT</a></li> 
+               <li><a href="{url 'about'}"class="nav-link">ABOUT</a></li> 
            </ul>
-       </nav>
-   
+       </nav> -->
+ 
+    <nav id="nav-bar" class="navbar navbar-expand-lg navbar-light ">
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'smoothie-home'%}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{%url 'store'%}">Pricing</a>
+              </li>
+              <div class="form-inline my-2 my-lg-0">
+                <a href="#" class="btn btn-warning">Login</a>
+      
+                <a href="{% url 'cart' %}">
+                  <img id="cart-icon" src="{% static 'images/cart.png' %}" />
+                </a>
+                <p id="cart-total">{{cartItems}}</p>
+              </div>
+           
+          </ul>
+          
+        </div>
+      </nav>
 
    </header>
    <section id="hero">
@@ -33,8 +90,27 @@
       <input type="submit" name="submit" id="submit" value="Sign in">
    </form>
    </section>
-   {%block content %}{% endblock content %}
    
+   {%block content %}{% endblock content %}
+  
+   <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="{% static 'js/cart.js'%}"></script>
 </body>
 </html>
  
