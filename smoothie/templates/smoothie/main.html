@@ -39,6 +39,34 @@
         return cookieValue;
       }
       const csrftoken = getToken("csrftoken");
+
+      function getCookie(name) {
+		    // Split cookie string and get all individual name=value pairs in an array
+		    var cookieArr = document.cookie.split(";");
+
+		    // Loop through the array elements
+		    for(var i = 0; i < cookieArr.length; i++) {
+		        var cookiePair = cookieArr[i].split("=");
+
+		        /* Removing whitespace at the beginning of the cookie name
+		        and compare it with the given string */
+		        if(name == cookiePair[0].trim()) {
+		            // Decode the cookie value and return
+		            return decodeURIComponent(cookiePair[1]);
+		        }
+		    }
+
+		    // Return null if not found
+		    return null;
+		}
+		var cart = JSON.parse(getCookie('cart'))
+
+    if (cart == undefined){
+      cart = {}
+      console.log('cart was created')
+      document.cookie = 'cart =' + JSON.stringify(cart) + ";domain;path=/"
+    }
+    console.log('cart: ', cart)
     </script>
 </head>
 <body>
@@ -56,6 +84,18 @@
        </nav> -->
  
     <nav id="nav-bar" class="navbar navbar-expand-lg navbar-light ">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
         
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">

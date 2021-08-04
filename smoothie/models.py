@@ -15,7 +15,7 @@ class Customer(models.Model):
         return self.name
 
 class Products(models.Model):
-    id=models.UUIDField(primary_key=True, default=uuid.uuid4)
+    # id=models.UUIDField(primary_key=True, default=uuid.uuid4)
     name=models.CharField(max_length=50)
     about=models.TextField()
     price= models.FloatField()
@@ -28,10 +28,10 @@ class Products(models.Model):
 
 
 class Order(models.Model):
-    id=models.UUIDField(primary_key=True, default=uuid.uuid4)
+    # id=models.UUIDField(null=True, default=uuid.uuid4)
     customer=models.ForeignKey(Customer, null=True,on_delete=models.SET_NULL,blank=True)
     complete = models.BooleanField(default=False,null=True,blank=False)
-    product_id=models.ForeignKey(Products,on_delete=CASCADE)
+    # product_id=models.ForeignKey(Products,on_delete=CASCADE)
     transaction_id = models.CharField(max_length=200)
     created_at=models.DateTimeField(auto_now_add=True,)
     updated_at=models.DateTimeField(auto_now=True)
