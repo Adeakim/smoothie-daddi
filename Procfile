@@ -1,1 +1,1 @@
-web:gunicorn smoothiedaddy.wsgi --log-file -
+web: gunicorn smoothiedaddy.wsgi --log-file -
