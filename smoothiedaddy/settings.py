@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-oyp=@#*7hz^i$5e9kbpp6v6w!_3-+wt=0astz48j99ouqx0k3q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['smoothiedaddi.herokuapp.com','127.0.0.1']
 
@@ -33,6 +33,8 @@ ALLOWED_HOSTS = ['smoothiedaddi.herokuapp.com','127.0.0.1']
 
 INSTALLED_APPS = [
     'smoothie.apps.SmoothieConfig',
+    'cloudinary_storage',
+    'cloudinary',
     'users.apps.UsersConfig',  
     'django.contrib.admin',
     'django.contrib.auth',
@@ -122,13 +124,25 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
-STATIC_URL = '/static/'
+
+# STATIC_URL = '/static/'
 # MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 # MEDIA_URL='/media/'
-MEDIA_URL = '/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,"static")
+]
+
+
+MEDIA_URL = '/smoothie/'
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 
 
@@ -143,4 +157,11 @@ LOGIN_REDIRECT_URL= 'smoothie-home'
 
 LOGIN_URL='login'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+CLOUDINARY_STORAGE ={
+    'CLOUD_NAME': 'dje0qtxrs',
+    'API_KEY': '347166829819152',
+    'API_SECRET' : '8js9vybLTSvEMElZmPxT2UEwbA0'
+}
+
