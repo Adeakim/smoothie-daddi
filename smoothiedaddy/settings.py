@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-oyp=@#*7hz^i$5e9kbpp6v6w!_3-+wt=0astz48j99ouqx0k3q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['smoothiedaddi.herokuapp.com','127.0.0.1']
 
