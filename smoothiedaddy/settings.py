@@ -139,7 +139,7 @@ STATICFILES_DIRS = [
     static_pth,
 ]
 if static_dir == 'live':
-    STATICFILES_DIRS=[]
+    STATICFILES_DIRS=[os.path.join(BASE_DIR,'staticfiles'),]
     STATIC_ROOT= static_pth
 
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
