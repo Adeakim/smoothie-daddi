@@ -132,15 +132,18 @@ USE_TZ = True
 # MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 # MEDIA_URL='/media/'
 STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
-static_dir = os.environ.get('STATIC_DIR', 'local')
-static_pth = os.path.join(BASE_DIR,"static")
-STATICFILES_DIRS = [
-    static_pth,
-]
-if static_dir == 'live':
-    STATICFILES_DIRS=[os.path.join(BASE_DIR,'staticfiles'),]
-    STATIC_ROOT= static_pth
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# os.environ.get('STATIC_DIR', 'local')
+# static_pth = os.path.join(BASE_DIR,"static")
+# STATICFILES_DIRS = [
+#     static_pth,
+# ]
+# if static_dir == 'live':
+#     STATICFILES_DIRS=[os.path.join(BASE_DIR,'staticfiles'),]
+#     STATIC_ROOT= static_pth
 
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 
@@ -149,7 +152,7 @@ MEDIA_URL = '/smoothie/'
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR,"static")
 # ]
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
