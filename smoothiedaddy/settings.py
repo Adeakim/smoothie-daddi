@@ -170,8 +170,6 @@ LOGIN_REDIRECT_URL= 'smoothie-home'
 
 LOGIN_URL='login'
 
-
-
 CLOUDINARY_STORAGE ={
     'CLOUD_NAME': 'dje0qtxrs',
     'API_KEY': '347166829819152',
